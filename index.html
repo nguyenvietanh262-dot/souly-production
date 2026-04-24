@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Souly Infinity | Cập Nhật Mới</title>
+    <title>Souly Infinity | Personal Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
         
+        :root {
+            scroll-behavior: smooth;
+        }
+
         body { 
             font-family: 'Space Grotesk', sans-serif; 
             background-color: #050505;
             color: #ffffff;
-            overflow-x: hidden;
         }
 
-        /* Nền hiệu ứng đốm sáng để nhận diện bản mới */
         .bg-glow {
             position: fixed;
             top: 0;
@@ -27,153 +29,261 @@
             z-index: -1;
         }
 
-        .neon-border {
-            position: relative;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(129, 140, 248, 0.2);
-            backdrop-filter: blur(20px);
-            transition: all 0.5s ease;
+        .glass-nav {
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .neon-border:hover {
+        .card-neon {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(129, 140, 248, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .card-neon:hover {
             border-color: #818cf8;
-            box-shadow: 0 0 30px rgba(129, 140, 248, 0.2);
-            transform: scale(1.02);
+            background: rgba(129, 140, 248, 0.05);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
-        .text-neon {
-            text-shadow: 0 0 10px rgba(129, 140, 248, 0.5);
+        .text-gradient {
             background: linear-gradient(to right, #818cf8, #c084fc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .floating {
-            animation: floating 3s ease-in-out infinite;
+        .skill-tag {
+            background: rgba(129, 140, 248, 0.1);
+            border: 1px solid rgba(129, 140, 248, 0.2);
+            padding: 4px 12px;
+            border-radius: 99px;
+            font-size: 0.8rem;
         }
 
-        @keyframes floating {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        #custom-modal {
-            display: none;
-            backdrop-filter: blur(15px);
-        }
+        /* Tùy chỉnh thanh cuộn */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #1e1b4b; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #818cf8; }
     </style>
 </head>
 <body>
     <div class="bg-glow"></div>
 
-    <!-- Modal tùy chỉnh mới -->
-    <div id="custom-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-6">
-        <div class="bg-[#111111] border border-indigo-500/30 p-8 rounded-3xl max-w-md w-full shadow-2xl">
-            <div class="flex items-center gap-4 mb-6">
-                <div class="w-12 h-12 bg-indigo-500/20 rounded-full flex items-center justify-center text-indigo-400">
-                    <i class="fas fa-microchip"></i>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2 font-bold text-xl tracking-tighter">
+                <div class="w-8 h-8 bg-indigo-600 rounded flex items-center justify-center">
+                    <i class="fas fa-bolt text-sm"></i>
                 </div>
-                <h3 id="modal-title" class="text-xl font-bold">Thông báo hệ thống</h3>
+                SOULY.INF
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
+                <a href="#home" class="hover:text-white transition-colors">Trang chủ</a>
+                <a href="#about" class="hover:text-white transition-colors">Giới thiệu</a>
+                <a href="#projects" class="hover:text-white transition-colors">Dự án</a>
+                <a href="#contact" class="hover:text-white transition-colors">Liên hệ</a>
             </div>
-            <p id="modal-desc" class="text-gray-400 mb-8 leading-relaxed">Nội dung sẽ hiển thị ở đây.</p>
-            <button onclick="hideModal()" class="w-full bg-indigo-600 py-4 rounded-xl font-bold hover:bg-indigo-500 transition-all active:scale-95">
-                ĐÃ HIỂU
+            <button class="bg-white text-black px-5 py-2 rounded-full text-sm font-bold hover:bg-indigo-500 hover:text-white transition-all">
+                Hợp tác
             </button>
         </div>
-    </div>
+    </nav>
 
-    <!-- Header -->
-    <header class="p-8 flex justify-between items-center max-w-7xl mx-auto">
-        <div class="flex items-center gap-2 group cursor-pointer">
-            <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center group-hover:rotate-12 transition-transform">
-                <i class="fas fa-bolt text-white"></i>
-            </div>
-            <span class="text-2xl font-bold tracking-tight">SOULY <span class="text-indigo-500">2.0</span></span>
-        </div>
-        <button onclick="notify('Đăng nhập', 'Cổng kết nối bảo mật đang được thiết lập...')" class="px-6 py-2 border border-white/10 rounded-full hover:bg-white/5 transition-all text-sm font-medium">
-            Truy cập
-        </button>
-    </header>
-
-    <main class="max-w-7xl mx-auto px-8 pt-12">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            
-            <div class="space-y-8">
-                <h1 class="text-6xl md:text-8xl font-bold leading-tight">
-                    <span class="text-neon">Digital</span><br>Legacy.
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center pt-20">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div class="flex flex-col justify-center space-y-6">
+                <span class="text-indigo-400 font-mono tracking-widest text-sm">DESIGNER & DEVELOPER</span>
+                <h1 class="text-6xl md:text-8xl font-bold leading-[0.9]">
+                    Sáng tạo <br><span class="text-gradient">Vô hạn.</span>
                 </h1>
-                <p class="text-gray-400 text-xl max-w-lg leading-relaxed">
-                    Phiên bản cập nhật mới nhất với giao diện Neon. Nếu bạn thấy màu Tím này, nghĩa là bạn đã cập nhật thành công!
+                <p class="text-gray-400 text-lg max-w-md leading-relaxed">
+                    Tôi là một nhà phát triển đam mê xây dựng những trải nghiệm kỹ thuật số độc đáo và hiệu quả. Chào mừng bạn đến với không gian của tôi.
                 </p>
-                <div class="flex gap-4">
-                    <button onclick="notify('Bắt đầu', 'Đang khởi tạo môi trường AI cho bạn...')" class="bg-indigo-600 px-8 py-4 rounded-2xl font-bold shadow-lg shadow-indigo-600/20 hover:-translate-y-1 transition-all">
-                        Trải nghiệm ngay
-                    </button>
-                    <button onclick="notify('Xem thêm', 'Tài liệu hướng dẫn đang được tải...')" class="px-8 py-4 bg-white/5 rounded-2xl font-bold hover:bg-white/10 transition-all">
-                        Tài liệu
-                    </button>
+                <div class="flex gap-4 pt-4">
+                    <a href="#projects" class="bg-indigo-600 px-8 py-4 rounded-xl font-bold hover:scale-105 transition-transform shadow-xl shadow-indigo-600/20">Xem dự án</a>
+                    <a href="#contact" class="px-8 py-4 border border-white/10 rounded-xl font-bold hover:bg-white/5 transition-colors">Liên hệ</a>
                 </div>
             </div>
-
-            <div class="relative">
-                <div class="floating neon-border p-8 rounded-[2.5rem] bg-[#0a0a0a]/80">
-                    <div class="flex items-center justify-between mb-8">
-                        <div class="flex gap-2">
-                            <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
-                            <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
-                            <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
-                        </div>
-                        <span class="text-[10px] text-gray-500 font-mono">STATUS: CONNECTED</span>
-                    </div>
-                    
-                    <div class="space-y-6">
-                        <div class="p-4 bg-white/5 rounded-2xl border border-white/5 flex items-center gap-4">
-                            <div class="w-10 h-10 bg-indigo-500/20 rounded-lg flex items-center justify-center text-indigo-400 text-sm">
-                                <i class="fas fa-brain"></i>
-                            </div>
-                            <div>
-                                <p class="text-sm font-bold">Đồng bộ tư duy</p>
-                                <p class="text-[10px] text-gray-500">Hoàn thành 88%</p>
-                            </div>
-                        </div>
-                        
-                        <div class="p-4 bg-white/5 rounded-2xl border border-white/5 flex items-center gap-4">
-                            <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center text-purple-400 text-sm">
-                                <i class="fas fa-database"></i>
-                            </div>
-                            <div>
-                                <p class="text-sm font-bold">Lưu trữ Vault</p>
-                                <p class="text-[10px] text-gray-500">1.2 GB dữ liệu đã mã hóa</p>
-                            </div>
+            <div class="relative flex justify-center items-center">
+                <!-- Giả lập hình ảnh hoặc khối trang trí -->
+                <div class="w-72 h-72 md:w-96 md:h-96 bg-gradient-to-tr from-indigo-600 to-purple-600 rounded-[3rem] rotate-12 blur-3xl opacity-20 absolute"></div>
+                <div class="card-neon p-10 rounded-[3rem] w-full max-w-sm relative z-10">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Souly" alt="Avatar" class="w-32 h-32 mx-auto mb-6 bg-white/10 rounded-full border-4 border-indigo-500/30 p-2">
+                    <div class="text-center space-y-2">
+                        <h3 class="text-2xl font-bold">Souly</h3>
+                        <p class="text-gray-500 text-sm">@souly_infinity</p>
+                        <div class="flex justify-center gap-4 pt-4">
+                            <i class="fab fa-github text-xl hover:text-indigo-400 cursor-pointer"></i>
+                            <i class="fab fa-twitter text-xl hover:text-indigo-400 cursor-pointer"></i>
+                            <i class="fab fa-instagram text-xl hover:text-indigo-400 cursor-pointer"></i>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Trang trí -->
-                <div class="absolute -top-10 -right-10 w-32 h-32 bg-indigo-600/20 blur-[60px] -z-10"></div>
-                <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-purple-600/20 blur-[60px] -z-10"></div>
             </div>
         </div>
-    </main>
+    </section>
+
+    <!-- About/Skills -->
+    <section id="about" class="py-24 bg-white/[0.01]">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12">Kỹ năng <span class="text-indigo-500">_</span></h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="card-neon p-6 rounded-2xl flex flex-col items-center gap-4">
+                    <i class="fab fa-html5 text-4xl text-orange-500"></i>
+                    <span class="font-bold">Frontend</span>
+                    <div class="flex flex-wrap justify-center gap-2">
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Tailwind</span>
+                    </div>
+                </div>
+                <div class="card-neon p-6 rounded-2xl flex flex-col items-center gap-4">
+                    <i class="fas fa-server text-4xl text-green-500"></i>
+                    <span class="font-bold">Backend</span>
+                    <div class="flex flex-wrap justify-center gap-2">
+                        <span class="skill-tag">NodeJS</span>
+                        <span class="skill-tag">Firebase</span>
+                    </div>
+                </div>
+                <div class="card-neon p-6 rounded-2xl flex flex-col items-center gap-4">
+                    <i class="fas fa-paint-brush text-4xl text-pink-500"></i>
+                    <span class="font-bold">Design</span>
+                    <div class="flex flex-wrap justify-center gap-2">
+                        <span class="skill-tag">Figma</span>
+                        <span class="skill-tag">UI/UX</span>
+                    </div>
+                </div>
+                <div class="card-neon p-6 rounded-2xl flex flex-col items-center gap-4">
+                    <i class="fas fa-mobile-alt text-4xl text-blue-500"></i>
+                    <span class="font-bold">Mobile</span>
+                    <div class="flex flex-wrap justify-center gap-2">
+                        <span class="skill-tag">Flutter</span>
+                        <span class="skill-tag">PWA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-3xl font-bold mb-2">Dự án nổi bật</h2>
+                    <p class="text-gray-500 text-sm">Những sản phẩm tôi đã từng thực hiện.</p>
+                </div>
+                <a href="#" class="text-indigo-400 hover:underline text-sm font-bold">Xem tất cả <i class="fas fa-arrow-right ml-2"></i></a>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="card-neon rounded-3xl overflow-hidden group">
+                    <div class="h-48 bg-indigo-900/30 relative flex items-center justify-center overflow-hidden">
+                        <i class="fas fa-code text-6xl opacity-10 group-hover:scale-150 transition-transform duration-700"></i>
+                        <span class="absolute top-4 left-4 bg-indigo-600 text-[10px] px-2 py-1 rounded">WEB APP</span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-2">E-Commerce Platform</h4>
+                        <p class="text-gray-500 text-sm mb-4">Nền tảng bán hàng tối ưu tốc độ và trải nghiệm người dùng.</p>
+                        <div class="flex gap-4">
+                            <button class="text-xs font-bold text-indigo-400 flex items-center gap-1 hover:text-white"><i class="fas fa-external-link-alt"></i> DEMO</button>
+                            <button class="text-xs font-bold text-gray-400 flex items-center gap-1 hover:text-white"><i class="fab fa-github"></i> CODE</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="card-neon rounded-3xl overflow-hidden group">
+                    <div class="h-48 bg-purple-900/30 relative flex items-center justify-center overflow-hidden">
+                        <i class="fas fa-robot text-6xl opacity-10 group-hover:scale-150 transition-transform duration-700"></i>
+                        <span class="absolute top-4 left-4 bg-purple-600 text-[10px] px-2 py-1 rounded">AI TOOLS</span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-2">AI Chatbot Assistant</h4>
+                        <p class="text-gray-500 text-sm mb-4">Hệ thống hỗ trợ khách hàng tự động dựa trên Gemini API.</p>
+                        <div class="flex gap-4">
+                            <button class="text-xs font-bold text-purple-400 flex items-center gap-1 hover:text-white"><i class="fas fa-external-link-alt"></i> DEMO</button>
+                            <button class="text-xs font-bold text-gray-400 flex items-center gap-1 hover:text-white"><i class="fab fa-github"></i> CODE</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="card-neon rounded-3xl overflow-hidden group">
+                    <div class="h-48 bg-pink-900/30 relative flex items-center justify-center overflow-hidden">
+                        <i class="fas fa-layer-group text-6xl opacity-10 group-hover:scale-150 transition-transform duration-700"></i>
+                        <span class="absolute top-4 left-4 bg-pink-600 text-[10px] px-2 py-1 rounded">UI KIT</span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-2">Neon Design System</h4>
+                        <p class="text-gray-500 text-sm mb-4">Bộ thư viện UI cho các ứng dụng phong cách tương lai.</p>
+                        <div class="flex gap-4">
+                            <button class="text-xs font-bold text-pink-400 flex items-center gap-1 hover:text-white"><i class="fas fa-external-link-alt"></i> DEMO</button>
+                            <button class="text-xs font-bold text-gray-400 flex items-center gap-1 hover:text-white"><i class="fab fa-github"></i> CODE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-white/[0.01]">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-5xl font-bold mb-6">Bạn có <span class="text-gradient">ý tưởng mới?</span></h2>
+            <p class="text-gray-400 mb-12">Hãy kết nối với tôi để cùng nhau hiện thực hóa dự án của bạn.</p>
+            
+            <form class="space-y-4 text-left card-neon p-8 rounded-[2rem]">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-gray-500 uppercase tracking-tighter ml-2">Họ & Tên</label>
+                        <input type="text" placeholder="Nguyễn Văn A" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-indigo-500 transition-colors">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-gray-500 uppercase tracking-tighter ml-2">Email</label>
+                        <input type="email" placeholder="email@example.com" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-indigo-500 transition-colors">
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <label class="text-xs font-bold text-gray-500 uppercase tracking-tighter ml-2">Lời nhắn</label>
+                    <textarea rows="4" placeholder="Viết gì đó cho tôi..." class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-indigo-500 transition-colors"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-indigo-500 hover:text-white transition-all">Gửi thông điệp</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-white/5 text-center text-gray-500 text-sm">
+        <p>&copy; 2024 Souly Infinity. Được tạo bởi <span class="text-white">Gemini</span></p>
+    </footer>
 
     <script>
-        const modal = document.getElementById('custom-modal');
-        const mTitle = document.getElementById('modal-title');
-        const mDesc = document.getElementById('modal-desc');
+        // Hiệu ứng Fade In đơn giản khi cuộn
+        const observerOptions = {
+            threshold: 0.1
+        };
 
-        function notify(title, desc) {
-            mTitle.innerText = title;
-            mDesc.innerText = desc;
-            modal.style.display = 'flex';
-        }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, observerOptions);
 
-        function hideModal() {
-            modal.style.display = 'none';
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) hideModal();
-        }
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = "0";
+            section.style.transform = "translateY(20px)";
+            section.style.transition = "all 0.8s ease-out";
+            observer.observe(section);
+        });
     </script>
 </body>
 </html>
